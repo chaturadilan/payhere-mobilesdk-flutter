@@ -23,7 +23,8 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.plugin.common.BinaryMessenger;
 
 import lk.payhere.androidsdk.PHConfigs;
 import lk.payhere.androidsdk.PHConstants;
@@ -203,7 +204,7 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
     // attachedContext = flutterPluginBinding.getApplicationContext();
   }
 
-  public static void registerWith(Registrar registrar) {
+  public void onAttachedToEngine(FlutterPluginBinding binding) {
     final MethodChannel channel = new MethodChannel(registrar.messenger(), "payhere_mobilesdk_flutter");
     final PayhereMobilesdkFlutterPlugin plugin = new PayhereMobilesdkFlutterPlugin();
     channel.setMethodCallHandler(plugin);
